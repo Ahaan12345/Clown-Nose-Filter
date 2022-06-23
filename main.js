@@ -18,9 +18,22 @@ function setup(){
 }
 
 function draw(){
-
+image(video,0,0,300,300);
+image(clown_nose,nosex,nosey,30,30);
 }
 
 function take_snapshot(){
     save('myFilter.png');
+}
+
+function modelLoaded() {
+    console.log("PoseNet is initialized");
+}
+
+function gotPoses(results) {
+    if(results.length>0){
+        console.log(results);
+        nosex=results[0].pose.nose.x-15;
+        nosey=results[0].pose.nose.y-15;
+    }
 }
